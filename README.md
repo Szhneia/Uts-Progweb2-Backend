@@ -54,9 +54,9 @@ cp .env.example .env
 3. Isi file `.env`.
 
 ```env
-PORT=3000
+PORT=3001
 DB_HOST=localhost
-DB_PORT=5432
+DB_PORT=5000
 DB_NAME=task_manager
 DB_USER=postgres
 DB_PASSWORD=your_password
