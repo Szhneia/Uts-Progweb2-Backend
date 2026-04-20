@@ -4,6 +4,7 @@ const assert = require("node:assert/strict");
 const app = require("../src/app");
 const pool = require("../src/db");
 
+// Helper ini menyederhanakan request JSON untuk pengecekan endpoint.
 async function requestJson(baseUrl, path, options = {}) {
   const response = await fetch(`${baseUrl}${path}`, options);
   const text = await response.text();

@@ -1,6 +1,7 @@
 # Task Manager API
 
 Project ini dibuat untuk UTS Pemrograman Web 2. Aplikasi ini adalah backend sederhana untuk mengelola data task menggunakan `Express` dan `PostgreSQL`.
+Endpoint yang tersedia sudah mencakup operasi CRUD dasar untuk data task.
 
 ## Fitur
 
@@ -52,9 +53,9 @@ cp .env.example .env
 3. Isi file `.env`.
 
 ```env
-PORT=3001
+PORT=3000
 DB_HOST=localhost
-DB_PORT=5000
+DB_PORT=5432
 DB_NAME=task_manager
 DB_USER=postgres
 DB_PASSWORD=your_password
@@ -71,6 +72,7 @@ npm run dev
 ```
 
 Kalau berhasil, server akan jalan di `http://localhost:<PORT>`.
+Kalau tidak ada perubahan di `.env`, port default yang dipakai adalah `3000`.
 
 ## Script
 

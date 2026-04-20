@@ -6,6 +6,7 @@ const port = Number(process.env.PORT) || 3000;
 
 async function startServer() {
   try {
+    // Pastikan koneksi database siap sebelum server menerima request.
     await pool.query("SELECT 1");
 
     app.listen(port, () => {

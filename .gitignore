@@ -1,4 +1,7 @@
+# Project dependencies and local config
 node_modules
 .env
 npm-debug.log*
+
+# Temporary workspace files
 .codex_tmp
