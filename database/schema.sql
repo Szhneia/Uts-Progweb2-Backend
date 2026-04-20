@@ -1,4 +1,4 @@
--- Schema tabel utama untuk data task
+-- Tabel utama untuk menyimpan data task
 CREATE TABLE IF NOT EXISTS tasks (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,

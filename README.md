@@ -2,6 +2,7 @@
 
 Project ini dibuat untuk UTS Pemrograman Web 2. Aplikasi ini adalah backend sederhana untuk mengelola data task menggunakan `Express` dan `PostgreSQL`.
 Endpoint yang tersedia sudah mencakup operasi CRUD dasar untuk data task.
+Project ini juga sudah dilengkapi pengecekan cepat lewat smoke test.
 
 ## Fitur
 
