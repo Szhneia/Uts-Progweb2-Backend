@@ -72,13 +72,34 @@ DB_PASSWORD=postgres
 npm run dev
 ```
 
-Server akan berjalan di `http://localhost:3000` secara default.
+Server akan berjalan di `http://localhost:<PORT>` sesuai nilai `PORT` di file `.env`.
+Jika tidak diubah, default yang dipakai adalah `3000`.
 
 ## Script
 
 - `npm run dev` untuk menjalankan server dengan `nodemon`.
 - `npm start` untuk menjalankan server biasa.
 - `npm run check` untuk mengecek syntax entry point server.
+- `npm run smoke` untuk menjalankan smoke test otomatis endpoint utama tanpa perlu mengetik request manual.
+
+## Cek Cepat
+
+Jika ingin memastikan backend berjalan sesuai requirement tanpa testing manual di PowerShell, jalankan:
+
+```bash
+npm run smoke
+```
+
+Smoke test akan memverifikasi:
+
+- `GET /`
+- `GET /tasks`
+- `POST /tasks`
+- `GET /tasks/:id`
+- `PUT /tasks/:id`
+- validasi `400` untuk `title` kosong
+- `DELETE /tasks/:id`
+- `404` setelah data dihapus
 
 ## Endpoint
 
