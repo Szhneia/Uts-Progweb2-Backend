@@ -27,12 +27,6 @@ CREATE TABLE IF NOT EXISTS tasks (
 );
 ```
 
-## Yang Perlu Disiapkan
-
-- Node.js
-- PostgreSQL
-- npm
-
 ## Cara Menjalankan
 
 1. Install dependency:
@@ -55,7 +49,7 @@ Bash/Linux/macOS:
 cp .env.example .env
 ```
 
-3. Isi file `.env` sesuai setting PostgreSQL masing-masing.
+3. Isi file `.env`.
 
 ```env
 PORT=3001
