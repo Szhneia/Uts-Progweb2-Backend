@@ -1,19 +1,21 @@
 # Task Manager API
 
-Backend sederhana untuk UTS Pemrograman Web 2 menggunakan `Express`, `PostgreSQL`, `pg`, `dotenv`, dan `nodemon`.
+Project ini dibuat untuk UTS Pemrograman Web 2. Aplikasi ini adalah backend sederhana untuk mengelola data task menggunakan `Express` dan `PostgreSQL`.
 
 ## Fitur
 
-- CRUD lengkap untuk resource `tasks`.
-- Middleware logging yang mencetak timestamp, method, dan URL request.
-- Validasi `title` agar tidak kosong atau hanya berisi spasi.
-- Validasi `is_completed` agar selalu bertipe boolean saat update.
-- Error handling `404` untuk task yang tidak ditemukan dan endpoint yang tidak tersedia.
-- Verifikasi koneksi database saat server dijalankan.
+- Menampilkan semua task
+- Menampilkan task berdasarkan ID
+- Menambahkan task baru
+- Mengubah task
+- Menghapus task
+- Logging request
+- Validasi input
+- Response `404` kalau data tidak ditemukan
 
 ## Struktur Tabel
 
-Schema database tersedia di [`database/schema.sql`](database/schema.sql) dengan struktur berikut:
+File schema ada di [`database/schema.sql`](database/schema.sql).
 
 ```sql
 CREATE TABLE IF NOT EXISTS tasks (
@@ -25,46 +27,48 @@ CREATE TABLE IF NOT EXISTS tasks (
 );
 ```
 
-## Prasyarat
+## Yang Perlu Disiapkan
 
 - Node.js
 - PostgreSQL
 - npm
 
-## Setup
+## Cara Menjalankan
 
-1. Install dependency project:
+1. Install dependency:
 
 ```bash
 npm install
 ```
 
-2. Copy file environment:
+2. Copy `.env.example` jadi `.env`.
+
+PowerShell:
 
 ```bash
 Copy-Item .env.example .env
 ```
 
-Atau di Bash/Linux/macOS:
+Bash/Linux/macOS:
 
 ```bash
 cp .env.example .env
 ```
 
-3. Isi konfigurasi database di file `.env`:
+3. Isi file `.env` sesuai setting PostgreSQL masing-masing.
 
 ```env
-PORT=3000
+PORT=3001
 DB_HOST=localhost
-DB_PORT=5432
+DB_PORT=5000
 DB_NAME=task_manager
 DB_USER=postgres
-DB_PASSWORD=postgres
+DB_PASSWORD=your_password
 ```
 
-4. Buat database PostgreSQL, misalnya `task_manager`.
+4. Buat database, misalnya `task_manager`.
 
-5. Jalankan schema dari file `database/schema.sql`.
+5. Jalankan file `database/schema.sql`.
 
 6. Jalankan server:
 
@@ -72,46 +76,45 @@ DB_PASSWORD=postgres
 npm run dev
 ```
 
-Server akan berjalan di `http://localhost:<PORT>` sesuai nilai `PORT` di file `.env`.
-Jika tidak diubah, default yang dipakai adalah `3000`.
+Kalau berhasil, server akan jalan di `http://localhost:<PORT>`.
 
 ## Script
 
-- `npm run dev` untuk menjalankan server dengan `nodemon`.
-- `npm start` untuk menjalankan server biasa.
-- `npm run check` untuk mengecek syntax entry point server.
-- `npm run smoke` untuk menjalankan smoke test otomatis endpoint utama tanpa perlu mengetik request manual.
+- `npm run dev` untuk menjalankan server dengan `nodemon`
+- `npm start` untuk menjalankan server biasa
+- `npm run check` untuk cek syntax file utama
+- `npm run smoke` untuk tes endpoint utama secara otomatis
 
 ## Cek Cepat
 
-Jika ingin memastikan backend berjalan sesuai requirement tanpa testing manual di PowerShell, jalankan:
+Kalau mau cek project ini jalan atau tidak, paling gampang pakai:
 
 ```bash
 npm run smoke
 ```
 
-Smoke test akan memverifikasi:
+Command ini akan mengecek:
 
 - `GET /`
 - `GET /tasks`
 - `POST /tasks`
 - `GET /tasks/:id`
 - `PUT /tasks/:id`
-- validasi `400` untuk `title` kosong
 - `DELETE /tasks/:id`
-- `404` setelah data dihapus
+- validasi `400` untuk `title` kosong
+- response `404` kalau data sudah tidak ada
 
 ## Endpoint
 
 | Method | Endpoint | Keterangan |
 | --- | --- | --- |
-| `GET` | `/tasks` | Mengambil semua task |
-| `GET` | `/tasks/:id` | Mengambil satu task berdasarkan ID |
+| `GET` | `/tasks` | Menampilkan semua task |
+| `GET` | `/tasks/:id` | Menampilkan task berdasarkan ID |
 | `POST` | `/tasks` | Menambahkan task baru |
-| `PUT` | `/tasks/:id` | Mengupdate task berdasarkan ID |
-| `DELETE` | `/tasks/:id` | Menghapus task berdasarkan ID |
+| `PUT` | `/tasks/:id` | Mengubah task |
+| `DELETE` | `/tasks/:id` | Menghapus task |
 
-## Contoh Request Body
+## Contoh Body Request
 
 ### POST `/tasks`
 
@@ -132,8 +135,8 @@ Smoke test akan memverifikasi:
 }
 ```
 
-## Catatan Validasi
+## Validasi
 
-- `title` wajib diisi pada `POST /tasks`.
-- `title` tidak boleh kosong atau hanya spasi pada `POST` dan `PUT`.
-- `is_completed` pada `PUT /tasks/:id` harus bernilai `true` atau `false`.
+- `title` wajib diisi saat `POST /tasks`
+- `title` tidak boleh kosong atau hanya spasi
+- `is_completed` pada `PUT /tasks/:id` harus bernilai `true` atau `false`
